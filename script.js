@@ -1,77 +1,72 @@
+// Mapping for height dropdown values to scores (1-6)
+const heightMap = {
+  "h1": 1,  // Below 150 cm
+  "h2": 2,  // 150-159 cm
+  "h3": 3,  // 160-169 cm
+  "h4": 4,  // 170-179 cm
+  "h5": 5,  // 180-189 cm
+  "h6": 6   // 190 cm and above
+};
+
+// Mapping for weight dropdown values to scores (1-6)
+const weightMap = {
+  "w1": 1,  // Below 50 kg
+  "w2": 2,  // 50-59 kg
+  "w3": 3,  // 60-69 kg
+  "w4": 4,  // 70-79 kg
+  "w5": 5,  // 80-89 kg
+  "w6": 6   // 90 kg and above
+};
+
 document.getElementById('sizeForm').addEventListener('submit', function(e) {
   e.preventDefault();
   
-  // Retrieve form values
-  var gender = document.getElementById('gender').value;
-  var age = parseInt(document.getElementById('age').value);
-  var weight = parseFloat(document.getElementById('weight').value);
-  var height = parseFloat(document.getElementById('height').value);
-  var bodyType = document.getElementById('bodyType').value;
-  var fitChoice = document.getElementById('fitChoice').value;
+  // Get selected values
+  const selectedHeight = document.getElementById('height').value;
+  const selectedWeight = document.getElementById('weight').value;
+  const bodyType = document.getElementById('bodyType').value;
   
-  // Calculate BMI (using weight in kg and height in meters)
-  var heightMeters = height / 100;
-  var bmi = weight / (heightMeters * heightMeters);
+  // Retrieve corresponding scores
+  const heightScore = heightMap[selectedHeight];
+  const weightScore = weightMap[selectedWeight];
   
-  // Determine a base size using standard BMI thresholds
-  // 0: S, 1: M, 2: L, 3: XL
-  var baseSize;
-  if (bmi < 18.5) {
-    baseSize = 0;
-  } else if (bmi < 24.9) {
-    baseSize = 1;
-  } else if (bmi < 29.9) {
-    baseSize = 2;
-  } else {
-    baseSize = 3;
-  }
+  // Calculate average score from height and weight
+  let score = Math.round((heightScore + weightScore) / 2);
   
-  // Create an array for sizes for easy adjustment
-  var sizes = ["S", "M", "L", "XL"];
-  
-  // Adjust size based on height:
-  // If height is less than 160 cm, reduce size by one step (if possible)
-  // If height is greater than 180 cm, increase size by one step (if possible)
-  if (height < 160) {
-    baseSize = Math.max(0, baseSize - 1);
-  } else if (height > 180) {
-    baseSize = Math.min(3, baseSize + 1);
-  }
-  
-  // Adjust based on body type:
-  // If body type is slim, reduce size by one step
-  // If heavy, increase size by one step
+  // Adjust based on body type: slim (-1), heavy (+1), average/athletic (no change)
   if (bodyType === "slim") {
-    baseSize = Math.max(0, baseSize - 1);
+    score = Math.max(1, score - 1);
   } else if (bodyType === "heavy") {
-    baseSize = Math.min(3, baseSize + 1);
+    score = Math.min(6, score + 1);
   }
   
-  // Final size based on adjustments
-  var finalSize = sizes[baseSize];
-  
-  // Convert fit choice to text
-  var fitText = "";
-  if (fitChoice === "slimFit") {
-    fitText = "Slim Fit";
-  } else if (fitChoice === "normalFit") {
-    fitText = "Normal Fit";
-  } else if (fitChoice === "oversizedFit") {
-    fitText = "Oversized Fit";
+  // Map final score to clothing size
+  let finalSize = "";
+  if (score <= 2) {
+    finalSize = "S";
+  } else if (score === 3) {
+    finalSize = "M";
+  } else if (score === 4) {
+    finalSize = "L";
+  } else { // score 5 or 6
+    finalSize = "XL";
   }
   
-  // Build the result message
-  var resultMessage = "<h2>Your Recommended Size</h2>";
-  resultMessage += "<p>Based on your inputs (BMI: " + bmi.toFixed(1) + ", Height: " + height + " cm), your recommended clothing size is <strong>" + finalSize + "</strong> with a <strong>" + fitText + "</strong> style.</p>";
-  resultMessage += "<p>This recommendation is derived from standard BMI thresholds, height adjustments, and body type considerations to help you find a comfortable fit for the holiday season.</p>";
+  // Build result message
+  const resultMessage = `
+    <h2>Your Recommended Size</h2>
+    <p>Based on your selected height and weight, along with your body type, your recommended clothing size is <strong>${finalSize}</strong>.</p>
+    <p>This recommendation is derived from standardized size brackets. Please note that actual fit may vary by brand and style.</p>
+  `;
   
-  // Display the result with a fade-in animation
-  var resultDiv = document.getElementById('result');
+  // Display the result with a fade-in effect
+  const resultDiv = document.getElementById('result');
   resultDiv.innerHTML = resultMessage;
   resultDiv.style.animation = 'none';
-  void resultDiv.offsetWidth;
+  void resultDiv.offsetWidth; // trigger reflow
   resultDiv.style.animation = 'fadeIn 1s forwards';
 });
+
 
 
 
