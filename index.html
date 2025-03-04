@@ -3,48 +3,45 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Holiday Size Finder Widget | Matching Pajamas & Dogmart</title>
-  <meta name="description" content="Use our Holiday Size Finder to determine your perfect clothing size with options for Slim Fit, Normal Fit, and Oversized Fit. Enjoy festive comfort with Matching Family Pajamas and comfy Dog Beds this Christmas.">
+  <title>Holiday Size Finder Widget</title>
+  <meta name="description" content="Use our Holiday Size Finder to determine your ideal clothing size using your height, weight, and body type. Perfect for finding matching family pajamas and comfortable active wear this holiday season.">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="container">
     <h1>Holiday Size Finder</h1>
-    <p>Welcome to our Holiday Size Finder tool! Fill in your details below and discover your approximate clothing size along with your preferred fit style. Whether you're shopping for matching family pajamas or comfortable dog beds, get ready to celebrate a cozy and stylish Christmas!</p>
+    <p>Use this simple tool to find your recommended clothing size. Just select your height, weight, and body type below.</p>
     
     <form id="sizeForm">
-      <label for="gender">Gender:</label>
-      <select id="gender" required>
-        <option value="">Select Gender</option>
-        <option value="male">Male</option>
-        <option value="female">Female</option>
-        <option value="other">Other</option>
+      <label for="height">Height:</label>
+      <select id="height" required>
+        <option value="">Select your height</option>
+        <option value="h1">Below 150 cm</option>
+        <option value="h2">150-159 cm</option>
+        <option value="h3">160-169 cm</option>
+        <option value="h4">170-179 cm</option>
+        <option value="h5">180-189 cm</option>
+        <option value="h6">190 cm and above</option>
       </select>
       
-      <label for="age">Age:</label>
-      <input type="number" id="age" required placeholder="Enter your age">
-      
-      <label for="weight">Body Weight (kg):</label>
-      <input type="number" id="weight" required placeholder="Enter your weight">
-      
-      <label for="height">Height (cm):</label>
-      <input type="number" id="height" required placeholder="Enter your height">
+      <label for="weight">Weight:</label>
+      <select id="weight" required>
+        <option value="">Select your weight</option>
+        <option value="w1">Below 50 kg</option>
+        <option value="w2">50-59 kg</option>
+        <option value="w3">60-69 kg</option>
+        <option value="w4">70-79 kg</option>
+        <option value="w5">80-89 kg</option>
+        <option value="w6">90 kg and above</option>
+      </select>
       
       <label for="bodyType">Body Type:</label>
       <select id="bodyType" required>
-        <option value="">Select Body Type</option>
+        <option value="">Select your body type</option>
         <option value="slim">Slim</option>
         <option value="average">Average</option>
         <option value="athletic">Athletic</option>
         <option value="heavy">Heavy</option>
-      </select>
-      
-      <label for="fitChoice">Preferred Fit:</label>
-      <select id="fitChoice" required>
-        <option value="">Select Fit Style</option>
-        <option value="slimFit">Slim Fit</option>
-        <option value="normalFit">Normal Fit</option>
-        <option value="oversizedFit">Oversized Fit</option>
       </select>
       
       <button type="submit">Find My Size</button>
@@ -52,29 +49,25 @@
     
     <div id="result"></div>
     
-    <div class="credits">
-      <p>Discover matching family pajamas <a href="https://matchingpajamas.ca/collections/matching-family-pajamas" target="_blank">here</a>.</p>
-      <p>Explore comfortable dog beds <a href="https://dogmart.co.uk/collections/comfortable-dog-beds" target="_blank">here</a>.</p>
-    </div>
-    
     <div class="explanation">
       <p>
-        Knowing your clothing size is crucial, especially during the holidays when you want everything to fit just right. Our Holiday Size Finder tool combines several factors—including BMI (calculated from your weight and height), body type, and even height adjustments—to give you a personalized size recommendation.
+        Understanding your clothing size is key—especially when shopping online for matching family pajamas or active wear. Our tool uses pre‐defined height and weight brackets along with your body type to generate a general size recommendation.
       </p>
       <p>
-        The algorithm starts with well-established BMI thresholds and then fine-tunes the result by considering if you are shorter than 160 cm or taller than 180 cm, ensuring the size is not just based on weight alone. This helps account for different body proportions and overall stature.
+        The height and weight categories were created based on standard size guides. For example, a person in the "160-169 cm" bracket combined with the "60-69 kg" bracket generally falls into a medium size. Adjustments are then made based on whether you’re slim (suggesting a smaller size) or heavy (suggesting a larger size).
       </p>
       <p>
-        Additionally, we adjust the size further based on your body type. If you are naturally slim, our tool suggests a slightly smaller size, whereas if you are on the heavier side, it recommends going up one size. This nuanced approach helps reduce the hassle of returns and makes online shopping much more efficient.
+        This tool is designed to simplify your shopping experience and reduce the guesswork associated with sizing. It is especially useful during the busy holiday season when coordinating looks for matching family outfits is a fun way to celebrate.
       </p>
       <p>
-        By integrating links to Matching Family Pajamas and comfortable dog beds, we aim to provide a one-stop holiday solution that combines style and comfort. Embrace the festive season with confidence, knowing you’ve got the perfect fit—and enjoy a touch of matching charm with your loved ones!
+        <strong>Disclaimer:</strong> This tool provides a general recommendation based on limited input data. It should not be used as a substitute for professional fitting advice. Actual sizes may vary by brand and style.
       </p>
     </div>
   </div>
   <script src="script.js"></script>
 </body>
 </html>
+
 
 
 
