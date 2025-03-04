@@ -1,23 +1,26 @@
-// Wrap our code in DOMContentLoaded to ensure the form exists
+// Ensure our code runs after the DOM is loaded
 window.addEventListener('DOMContentLoaded', function() {
-  // Mapping for height dropdown values to scores (1-6)
+  // Mapping for height dropdown values to scores (1-8)
   const heightMap = {
-    "h1": 1,  // Below 150 cm
-    "h2": 2,  // 150-159 cm
-    "h3": 3,  // 160-169 cm
-    "h4": 4,  // 170-179 cm
-    "h5": 5,  // 180-189 cm
-    "h6": 6   // 190 cm and above
+    "h1": 1,  // Below 155 cm
+    "h2": 2,  // 155-159 cm
+    "h3": 3,  // 160-164 cm
+    "h4": 4,  // 165-169 cm
+    "h5": 5,  // 170-174 cm
+    "h6": 6,  // 175-179 cm
+    "h7": 7,  // 180-184 cm
+    "h8": 8   // 185 cm and above
   };
 
-  // Mapping for weight dropdown values to scores (1-6)
+  // Mapping for weight dropdown values to scores (1-7)
   const weightMap = {
-    "w1": 1,  // Below 50 kg
-    "w2": 2,  // 50-59 kg
-    "w3": 3,  // 60-69 kg
-    "w4": 4,  // 70-79 kg
-    "w5": 5,  // 80-89 kg
-    "w6": 6   // 90 kg and above
+    "w1": 1,  // Below 45 kg
+    "w2": 2,  // 45-50 kg
+    "w3": 3,  // 50-55 kg
+    "w4": 4,  // 55-60 kg
+    "w5": 5,  // 60-65 kg
+    "w6": 6,  // 65-70 kg
+    "w7": 7   // Above 70 kg
   };
 
   document.getElementById('sizeForm').addEventListener('submit', function(e) {
@@ -28,7 +31,7 @@ window.addEventListener('DOMContentLoaded', function() {
     const selectedWeight = document.getElementById('weight').value;
     const bodyType = document.getElementById('bodyType').value;
     
-    // Ensure values are selected
+    // Validate input
     if (!selectedHeight || !selectedWeight || !bodyType) {
       alert("Please select all options.");
       return;
@@ -38,43 +41,50 @@ window.addEventListener('DOMContentLoaded', function() {
     const heightScore = heightMap[selectedHeight];
     const weightScore = weightMap[selectedWeight];
     
-    // Calculate an average score from height and weight
-    let score = Math.round((heightScore + weightScore) / 2);
+    // Calculate average score from height and weight
+    let averageScore = (heightScore + weightScore) / 2;
     
-    // Adjust based on body type: slim (-1), heavy (+1), average/athletic (no change)
+    // Adjust based on body type:
+    // If slim, subtract 0.5; if heavy, add 0.5; average and athletic: no change.
     if (bodyType === "slim") {
-      score = Math.max(1, score - 1);
+      averageScore -= 0.5;
     } else if (bodyType === "heavy") {
-      score = Math.min(6, score + 1);
+      averageScore += 0.5;
     }
     
-    // Map final score to clothing size
+    // Determine recommended size based on adjusted average score:
+    // Score range: 1 to 8. Use thresholds:
+    // average < 3    => S
+    // 3 <= average < 5  => M
+    // 5 <= average < 6.5 => L
+    // average >= 6.5   => XL
     let finalSize = "";
-    if (score <= 2) {
+    if (averageScore < 3) {
       finalSize = "S";
-    } else if (score === 3) {
+    } else if (averageScore < 5) {
       finalSize = "M";
-    } else if (score === 4) {
+    } else if (averageScore < 6.5) {
       finalSize = "L";
-    } else { // score 5 or 6
+    } else {
       finalSize = "XL";
     }
     
-    // Build the result message
+    // Build result message
     const resultMessage = `
       <h2>Your Recommended Size</h2>
       <p>Based on your selections, your recommended clothing size is <strong>${finalSize}</strong>.</p>
-      <p>This recommendation is based on our predefined height and weight brackets with adjustments for body type. Actual fit may vary by brand and style.</p>
+      <p>This recommendation is based on your height and weight brackets with adjustments for body type. Remember, actual fit may vary by brand and style.</p>
     `;
     
-    // Display the result with a fade-in effect
+    // Display the result with fade-in effect
     const resultDiv = document.getElementById('result');
     resultDiv.innerHTML = resultMessage;
     resultDiv.style.animation = 'none';
-    void resultDiv.offsetWidth; // Trigger reflow to restart animation
+    void resultDiv.offsetWidth; // trigger reflow
     resultDiv.style.animation = 'fadeIn 1s forwards';
   });
 });
+
 
 
 
