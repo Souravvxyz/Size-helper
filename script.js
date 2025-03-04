@@ -9,17 +9,17 @@ document.getElementById('sizeForm').addEventListener('submit', function(e) {
   var bodyType = document.getElementById('bodyType').value;
   var fitChoice = document.getElementById('fitChoice').value;
   
-  // Calculate BMI using height in meters
+  // Calculate BMI (weight in kg, height in m)
   var heightMeters = height / 100;
   var bmi = weight / (heightMeters * heightMeters);
   
-  // Determine a basic size using BMI thresholds
+  // Determine a basic size using standard BMI thresholds
   var size = '';
   if (bmi < 18.5) {
     size = 'S';
-  } else if (bmi < 24.9) {
+  } else if (bmi < 25) {
     size = 'M';
-  } else if (bmi < 29.9) {
+  } else if (bmi < 30) {
     size = 'L';
   } else {
     size = 'XL';
@@ -47,10 +47,10 @@ document.getElementById('sizeForm').addEventListener('submit', function(e) {
     fitText = 'Oversized Fit';
   }
   
-  // Build result message
+  // Build result message with detailed information
   var resultMessage = "<h2>Your Recommended Size</h2>";
-  resultMessage += "<p>Based on your inputs (BMI: " + bmi.toFixed(1) + "), your approximate clothing size is <strong>" + size + "</strong> with a <strong>" + fitText + "</strong> style.</p>";
-  resultMessage += "<p>This recommendation is a general guide to help you find a comfortable and festive fit for the holidays. Enjoy your stylish look and celebrate Christmas in comfort!</p>";
+  resultMessage += "<p>Based on your input (BMI: " + bmi.toFixed(1) + "), your approximate clothing size is <strong>" + size + "</strong> with a <strong>" + fitText + "</strong> style.</p>";
+  resultMessage += "<p>This recommendation is a general guide to help you select a comfortable fit for your body type during the festive season.</p>";
   
   // Display the result with a fade-in effect by resetting the animation
   var resultDiv = document.getElementById('result');
@@ -60,4 +60,5 @@ document.getElementById('sizeForm').addEventListener('submit', function(e) {
   void resultDiv.offsetWidth;
   resultDiv.style.animation = 'fadeIn 1s forwards';
 });
+
 
