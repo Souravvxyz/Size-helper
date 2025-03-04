@@ -9,56 +9,69 @@ document.getElementById('sizeForm').addEventListener('submit', function(e) {
   var bodyType = document.getElementById('bodyType').value;
   var fitChoice = document.getElementById('fitChoice').value;
   
-  // Calculate BMI (weight in kg, height in m)
+  // Calculate BMI (using weight in kg and height in meters)
   var heightMeters = height / 100;
   var bmi = weight / (heightMeters * heightMeters);
   
-  // Determine a basic size using standard BMI thresholds
-  var size = '';
+  // Determine a base size using standard BMI thresholds
+  // 0: S, 1: M, 2: L, 3: XL
+  var baseSize;
   if (bmi < 18.5) {
-    size = 'S';
-  } else if (bmi < 25) {
-    size = 'M';
-  } else if (bmi < 30) {
-    size = 'L';
+    baseSize = 0;
+  } else if (bmi < 24.9) {
+    baseSize = 1;
+  } else if (bmi < 29.9) {
+    baseSize = 2;
   } else {
-    size = 'XL';
+    baseSize = 3;
   }
   
-  // Adjust size based on body type
-  if (bodyType === 'slim') {
-    if (size === 'M') size = 'S';
-    else if (size === 'L') size = 'M';
-    else if (size === 'XL') size = 'L';
-  } else if (bodyType === 'heavy') {
-    if (size === 'S') size = 'M';
-    else if (size === 'M') size = 'L';
-    else if (size === 'L') size = 'XL';
+  // Create an array for sizes for easy adjustment
+  var sizes = ["S", "M", "L", "XL"];
+  
+  // Adjust size based on height:
+  // If height is less than 160 cm, reduce size by one step (if possible)
+  // If height is greater than 180 cm, increase size by one step (if possible)
+  if (height < 160) {
+    baseSize = Math.max(0, baseSize - 1);
+  } else if (height > 180) {
+    baseSize = Math.min(3, baseSize + 1);
   }
-  // 'average' and 'athletic' remain unchanged
+  
+  // Adjust based on body type:
+  // If body type is slim, reduce size by one step
+  // If heavy, increase size by one step
+  if (bodyType === "slim") {
+    baseSize = Math.max(0, baseSize - 1);
+  } else if (bodyType === "heavy") {
+    baseSize = Math.min(3, baseSize + 1);
+  }
+  
+  // Final size based on adjustments
+  var finalSize = sizes[baseSize];
   
   // Convert fit choice to text
-  var fitText = '';
-  if (fitChoice === 'slimFit') {
-    fitText = 'Slim Fit';
-  } else if (fitChoice === 'normalFit') {
-    fitText = 'Normal Fit';
-  } else if (fitChoice === 'oversizedFit') {
-    fitText = 'Oversized Fit';
+  var fitText = "";
+  if (fitChoice === "slimFit") {
+    fitText = "Slim Fit";
+  } else if (fitChoice === "normalFit") {
+    fitText = "Normal Fit";
+  } else if (fitChoice === "oversizedFit") {
+    fitText = "Oversized Fit";
   }
   
-  // Build result message with detailed information
+  // Build the result message
   var resultMessage = "<h2>Your Recommended Size</h2>";
-  resultMessage += "<p>Based on your input (BMI: " + bmi.toFixed(1) + "), your approximate clothing size is <strong>" + size + "</strong> with a <strong>" + fitText + "</strong> style.</p>";
-  resultMessage += "<p>This recommendation is a general guide to help you select a comfortable fit for your body type during the festive season.</p>";
+  resultMessage += "<p>Based on your inputs (BMI: " + bmi.toFixed(1) + ", Height: " + height + " cm), your recommended clothing size is <strong>" + finalSize + "</strong> with a <strong>" + fitText + "</strong> style.</p>";
+  resultMessage += "<p>This recommendation is derived from standard BMI thresholds, height adjustments, and body type considerations to help you find a comfortable fit for the holiday season.</p>";
   
-  // Display the result with a fade-in effect by resetting the animation
+  // Display the result with a fade-in animation
   var resultDiv = document.getElementById('result');
   resultDiv.innerHTML = resultMessage;
   resultDiv.style.animation = 'none';
-  // Trigger reflow to restart animation
   void resultDiv.offsetWidth;
   resultDiv.style.animation = 'fadeIn 1s forwards';
 });
+
 
 
