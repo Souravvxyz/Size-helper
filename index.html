@@ -4,35 +4,38 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Holiday Size Finder Widget</title>
-  <meta name="description" content="Use our Holiday Size Finder to determine your ideal clothing size using your height, weight, and body type. Perfect for finding matching family pajamas and comfortable active wear this holiday season.">
+  <meta name="description" content="Determine your ideal clothing size using our Holiday Size Finder. Select your height, weight, and body type to receive a tailored recommendation. Perfect for matching family pajamas and cozy active wear this festive season.">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="container">
     <h1>Holiday Size Finder</h1>
-    <p>Use this tool to find your recommended clothing size. Simply select your height, weight, and body type below.</p>
+    <p>Select your details below to find your recommended clothing size.</p>
     
     <form id="sizeForm">
       <label for="height">Height:</label>
       <select id="height" required>
         <option value="">Select your height</option>
-        <option value="h1">Below 150 cm</option>
-        <option value="h2">150-159 cm</option>
-        <option value="h3">160-169 cm</option>
-        <option value="h4">170-179 cm</option>
-        <option value="h5">180-189 cm</option>
-        <option value="h6">190 cm and above</option>
+        <option value="h1">Below 155 cm (Below 5'1")</option>
+        <option value="h2">155-159 cm (5'1" - 5'3")</option>
+        <option value="h3">160-164 cm (5'3" - 5'5")</option>
+        <option value="h4">165-169 cm (5'5" - 5'7")</option>
+        <option value="h5">170-174 cm (5'7" - 5'9")</option>
+        <option value="h6">175-179 cm (5'9" - 5'11")</option>
+        <option value="h7">180-184 cm (5'11" - 6'0")</option>
+        <option value="h8">185 cm and above (Above 6'1")</option>
       </select>
       
       <label for="weight">Weight:</label>
       <select id="weight" required>
         <option value="">Select your weight</option>
-        <option value="w1">Below 50 kg</option>
-        <option value="w2">50-59 kg</option>
-        <option value="w3">60-69 kg</option>
-        <option value="w4">70-79 kg</option>
-        <option value="w5">80-89 kg</option>
-        <option value="w6">90 kg and above</option>
+        <option value="w1">Below 45 kg</option>
+        <option value="w2">45-50 kg</option>
+        <option value="w3">50-55 kg</option>
+        <option value="w4">55-60 kg</option>
+        <option value="w5">60-65 kg</option>
+        <option value="w6">65-70 kg</option>
+        <option value="w7">Above 70 kg</option>
       </select>
       
       <label for="bodyType">Body Type:</label>
@@ -49,21 +52,30 @@
     
     <div id="result"></div>
     
+    <div class="credits">
+      <p>Discover matching family pajamas <a href="https://matchingpajamas.ca/collections/matching-family-pajamas" target="_blank">here</a>.</p>
+      <p>Explore comfortable dog beds <a href="https://dogmart.co.uk/collections/comfortable-dog-beds" target="_blank">here</a>.</p>
+    </div>
+    
     <div class="explanation">
       <p>
-        Our Holiday Size Finder uses your height and weight brackets along with your body type to recommend a clothing size (S, M, L, or XL). The data is based on standard size-guide information – for instance, someone in the 160-169 cm and 60-69 kg range will likely be a medium, but adjustments are made if you are slim or heavy.
+        <strong>Benefits & How It Works:</strong> Finding the perfect clothing size online can be challenging. Our Holiday Size Finder breaks your measurements into smaller, more precise categories—using height increments (with both cm and the equivalent in inches/feet) and weight increments of approximately 5 kg. This granularity helps deliver a more accurate size recommendation.
       </p>
       <p>
-        This tool simplifies your online shopping by giving a general recommendation to reduce guesswork. It’s especially useful during the busy holiday season when coordinating matching family outfits is a fun way to celebrate.
+        By combining your height and weight scores and then adjusting slightly based on your body type (with “slim” indicating a need for a smaller size and “heavy” suggesting a larger size), we generate a general recommendation (S, M, L, or XL) that can serve as a starting point when shopping online.
       </p>
       <p>
-        <strong>Disclaimer:</strong> This tool provides a general recommendation based on preset brackets and limited input. It is not a substitute for professional fitting advice. Actual sizes may vary by brand and style.
+        This tool is especially useful during the holiday season when coordinating matching family pajamas or selecting festive active wear is part of the celebration. It reduces the guesswork and helps minimize the hassle of returns and exchanges.
+      </p>
+      <p>
+        <strong>Disclaimer:</strong> This tool provides a general recommendation based on preset brackets and limited input. It is not a substitute for professional fitting advice—actual sizes may vary by brand and style.
       </p>
     </div>
   </div>
   <script src="script.js"></script>
 </body>
 </html>
+
 
 
 
