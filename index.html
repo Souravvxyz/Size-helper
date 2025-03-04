@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Holiday Size Finder Widget | Matching Pajamas & Dogmart</title>
+  <meta name="description" content="Use our Holiday Size Finder to determine your perfect clothing size with choices of Slim Fit, Normal Fit, and Oversized Fit. Enjoy festive comfort with Matching Family Pajamas and comfy Dog Beds this Christmas.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Holiday Size Finder</h1>
+    <p>Welcome to our Holiday Size Finder tool! Enter your details below to get an approximate size recommendation and choose your fit style. Whether you're shopping for matching family pajamas or comfortable dog beds, our guide is here to make your Christmas extra cozy and stylish.</p>
+    
+    <form id="sizeForm">
+      <label for="gender">Gender:</label>
+      <select id="gender" required>
+        <option value="">Select Gender</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="other">Other</option>
+      </select>
+      
+      <label for="age">Age:</label>
+      <input type="number" id="age" required placeholder="Enter your age">
+      
+      <label for="weight">Body Weight (kg):</label>
+      <input type="number" id="weight" required placeholder="Enter your weight">
+      
+      <label for="bodyType">Body Type:</label>
+      <select id="bodyType" required>
+        <option value="">Select Body Type</option>
+        <option value="slim">Slim</option>
+        <option value="average">Average</option>
+        <option value="athletic">Athletic</option>
+        <option value="heavy">Heavy</option>
+      </select>
+      
+      <label for="fitChoice">Preferred Fit:</label>
+      <select id="fitChoice" required>
+        <option value="">Select Fit Style</option>
+        <option value="slimFit">Slim Fit</option>
+        <option value="normalFit">Normal Fit</option>
+        <option value="oversizedFit">Oversized Fit</option>
+      </select>
+      
+      <button type="submit">Find My Size</button>
+    </form>
+    
+    <div id="result"></div>
+    
+    <div class="credits">
+      <p>Discover matching family pajamas <a href="https://matchingpajamas.ca/collections/matching-family-pajamas" target="_blank">here</a>.</p>
+      <p>Explore comfortable dog beds <a href="https://dogmart.co.uk/collections/comfortable-dog-beds" target="_blank">here</a>.</p>
+    </div>
+    
+    <p class="holidayNote">This Christmas, embrace comfort and style. Our Holiday Size Finder not only guides you to the right fit but also helps you enjoy festive cheer with cozy clothing and home essentials!</p>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
