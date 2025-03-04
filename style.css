@@ -88,11 +88,16 @@ form button:hover {
   text-decoration: underline;
 }
 
-/* Holiday note styling */
-.holidayNote {
-  margin-top: 20px;
-  font-style: italic;
+/* Explanation text styling */
+.explanation {
+  margin-top: 30px;
+  text-align: left;
+  font-size: 0.95em;
   color: #555;
+}
+
+.explanation p {
+  margin-bottom: 15px;
 }
 
 /* Fade-in keyframes */
@@ -100,4 +105,3 @@ form button:hover {
   from { opacity: 0; }
   to { opacity: 1; }
 }
-
